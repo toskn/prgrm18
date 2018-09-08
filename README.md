@@ -29,4 +29,4 @@
 </tr>
 </tbody>
 </table>
-![alt text](https://github.com/toskn/prgrm18/blob/master/Snoopy_Peanuts.png)
+<img src="https://github.com/toskn/prgrm18/blob/master/Snoopy_Peanuts.png" align="left">
