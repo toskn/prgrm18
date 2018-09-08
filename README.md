@@ -29,4 +29,4 @@
 </tr>
 </tbody>
 </table>
-[picture of snoopy](https://github.com/toskn/prgrm18/blob/master/Snoopy_Peanuts.png?raw=true)
+[picture of snoopy](https://github.com/toskn/prgrm18/blob/master/Snoopy_Peanuts.png)
