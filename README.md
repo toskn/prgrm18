@@ -15,17 +15,17 @@
 <tr>
 <td><strong>1</strong></td>
 <td>Игра "Виселица"</td>
-<td><a href="https://www.github.com"><em>Код</em></a></td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK1/task1.py"><em>Код</em></a></td>
 </tr>
 <tr>
 <td><strong>2</strong></td>
 <td>Краулер для газеты "Светлый путь"</td>
-<td><a href="https://www.github.com"><em>Код</em></a></td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK2/task2.py"><em>Код</em></a></td>
 </tr>
 <tr>
 <td><strong>3</strong></td>
 <td>Типологическая анкета об употреблении феминитивов</td>
-<td><a href="https://www.github.com"><em>Код</em></a></td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK3/task3.py"><em>Код</em></a></td>
 </tr>
 </tbody>
 </table>
