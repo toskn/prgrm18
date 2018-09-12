@@ -2,6 +2,7 @@
 # which means that if there is a repeated letter in the word,
 # it should be guessed twice.
 # "ё" character isn't used
+# i, ii, iii are used as counters
 import random
 import re
 import sys
@@ -38,7 +39,7 @@ def open_file_to_list(players_choice):
 
 # This def selects a random word from the list
 def random_word(file):
-    i = random.randint(0, 11)
+    i = random.randint(0, 10)
     word_to_guess = file[i]
     return word_to_guess
 
@@ -60,13 +61,15 @@ def random_word(file):
 def game(word_to_guess):
     attempts = 10
     i = 0
+    ii = 0
+    iii = 0
     list_of_letters = list(word_to_guess)
     underline = ''
 
     while i < len(word_to_guess):
         underline += '_ '
         i += 1
-    list_underline = list(underline)
+    list_underline = underline.split(' ')  # тут была list вместо split
     print(underline)
     print('У вас есть 10 попыток, чтобы угадать слово из ' + str(len(word_to_guess)) + ' букв')
 
@@ -80,19 +83,19 @@ def game(word_to_guess):
         # 3) if letter is cyrillic
         if players_guess.isalpha() and len(players_guess) == 1 and bool(re.search('[а-яА-Я]', players_guess)):
 
-            # Player did guess the letter; a letter of the hidden word is revealed.
+            # Player did guess a letter; a letter of the hidden word is revealed.
             # To reveal a letter a string is created from the list.
             for i in range(len(list_of_letters)):
                 if players_guess == list_of_letters[i]:
                     list_underline[i] = players_guess + ' '
-                    underline = ''.join(list_underline)
-                    if underline.split(' ') == list_of_letters:
-                        print('Победа! Вы разгадали слово!')
+                    underline = ' '.join(list_underline)
+                    ii += 1
 
                 # Player didn't guess the letter
                 # For the sake of optimization its better to reverse the order of elifs,
                 # but here it doesnt really matter
-                else:
+            if ii <= iii:
+                    iii = ii
                     print('Такой буквы в слове нет.')
                     attempts -= 1
                     if attempts == 0:
@@ -103,7 +106,8 @@ def game(word_to_guess):
                         print('Осталось ' + str(attempts) + ' попытки')
                     elif 5 <= attempts <= 10:
                         print('Осталось ' + str(attempts) + ' попыток')
-
+            if underline.split(' ') == list_of_letters:
+                print('Победа! Вы разгадали слово!')
             print(underline)
         else:
             print("Ошибка ввода. Пожалуйста, введите одну букву русского алфавита.")
