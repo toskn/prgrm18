@@ -4,19 +4,20 @@
 # "ё" character isn't used
 import random
 import re
+import sys
 
 
 # This  def allows player to choose the category
 def choose_category():
-    players_choice = int(input('Type the number of the category you want to play: \n 1) Столярные инструменты \n '
+    players_choice = int(input('Введите номер категории, которую хотите играть: \n 1) Столярные инструменты \n '
                                '2) Слесарные инструменты \n 3) Футбольные клубы, образованные в 1933 году'))
     return players_choice
 
 
 # This def opens the chosen file to a list
 def open_file_to_list(players_choice):
-    # Players' input is valid
 
+    # Players' input is valid
     if players_choice == 1:
         filename = 'stolyarnie_instrumenti.txt'
     elif players_choice == 2:
@@ -25,12 +26,10 @@ def open_file_to_list(players_choice):
         filename = 'football_clubs_origin_1933.txt'
 
     # Players' input is invalid
-
     elif players_choice != 1 and players_choice != 2 and players_choice != 3:
-        print("That's an inappropriate input. Restart the game.")
+        sys.exit("Такая категория отсутствует. Перезапустите игру.")
 
     # Chosen .txt file is opened as a list
-
     with open(filename, encoding='utf-8') as file:
         file = file.read()
         file = file.split("\n")
@@ -67,12 +66,13 @@ def game(word_to_guess):
     while i < len(word_to_guess):
         underline += '_ '
         i += 1
+    list_underline = list(underline)
     print(underline)
     print('У вас есть 10 попыток, чтобы угадать слово из ' + str(len(word_to_guess)) + ' букв')
 
     # Preparation finished, the game starts here.
     while attempts > 0 and underline.split(' ') != list_of_letters:
-        players_guess = str(input('Guess a letter'))
+        players_guess = str(input('Введите букву'))
 
         # Here the players' input is checked:
         # 1) if it contain letters
@@ -81,17 +81,19 @@ def game(word_to_guess):
         if players_guess.isalpha() and len(players_guess) == 1 and bool(re.search('[а-яА-Я]', players_guess)):
 
             # Player did guess the letter; a letter of the hidden word is revealed.
+            # To reveal a letter a string is created from the list.
             for i in range(len(list_of_letters)):
                 if players_guess == list_of_letters[i]:
-                    list_underline = list(underline)
                     list_underline[i] = players_guess + ' '
+                    underline = ''.join(list_underline)
                     if underline.split(' ') == list_of_letters:
-                        print('WIN')
+                        print('Победа! Вы разгадали слово!')
 
                 # Player didn't guess the letter
                 # For the sake of optimization its better to reverse the order of elifs,
                 # but here it doesnt really matter
                 else:
+                    print('Такой буквы в слове нет.')
                     attempts -= 1
                     if attempts == 0:
                         print('Попыток не осталось! Вы проиграли. Хотите сыграть еще раз?')
@@ -104,7 +106,7 @@ def game(word_to_guess):
 
             print(underline)
         else:
-            print("That's not a valid input")
+            print("Ошибка ввода. Пожалуйста, введите одну букву русского алфавита.")
 
 
 game(random_word(open_file_to_list(choose_category())))
