@@ -85,8 +85,12 @@ def game(word_to_guess):
             for i in range(len(list_of_tries)):
                 if players_guess == list_of_tries[i]:
                     print('Вы уже вводили эту букву')
-            print("Список уже введенных букв: " + str(list_of_tries))
+                    attempts += 1
+                    if attempts > 10:
+                        attempts = 10
             list_of_tries.append(players_guess)
+            list_of_tries = list(set(list_of_tries))
+            print("Список уже введенных букв: " + str(list_of_tries))
             # Player did guess a letter; a letter of the hidden word is revealed.
             # To reveal a letter a string is created from the list.
             for i in range(len(list_of_letters)):
@@ -94,12 +98,13 @@ def game(word_to_guess):
                     list_underline[i] = players_guess
                     underline = ' '.join(list_underline)
                     ii += 1
+                if players_guess not in list_of_letters:
+                    iii = ii
 
                     # Player didn't guess the letter
                     # For the sake of optimization its better to reverse the order of elifs,
                     # but here it doesn't really matter
-            if ii <= iii:
-                iii = ii
+            if ii == iii:
                 print('Такой буквы в слове нет.')
                 attempts -= 1
                 if attempts == 0:
