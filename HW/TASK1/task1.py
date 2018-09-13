@@ -40,20 +40,6 @@ def random_word(file):
     return word_to_guess
 
 
-# This def creates a variable which is actually the random word from previous def, but all the letters are '_' now
-# its commented and moved inside the [def game] now,
-# since using this def separately makes the program do the job twice in [def game(…, …)]
-# def make_word_hidden(word_to_guess):
-#     i = 0
-#     underline = ''
-#     while i < len(word_to_guess):
-#        print('_ ')
-#        underline += '_ '
-#        i += 1
-#    print('У вас есть 10 попыток, чтобы угадать слово из' + str(len(word_to_guess)) + 'букв')
-#    return underline
-
-
 # This def is the gameplay
 def game(word_to_guess):
     attempts = 10
@@ -64,11 +50,12 @@ def game(word_to_guess):
     list_of_letters = list(word_to_guess)
     underline = ''
 
+    # Preparing the word, making it "_ _ _"-like
     while i < len(word_to_guess):
         underline += '_ '
         i += 1
     underline = underline[:-1]
-    list_underline = underline.split(' ')  # тут была list вместо split
+    list_underline = underline.split(' ')
     print(underline)
     print('У вас есть 10 попыток, чтобы угадать слово из ' + str(len(word_to_guess)) + ' букв')
 
