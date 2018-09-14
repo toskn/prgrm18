@@ -26,7 +26,7 @@ def open_file_to_list(players_choice):
     elif players_choice != '1' and players_choice != '2' and players_choice != '3':
         sys.exit("Такая категория отсутствует. Перезапустите игру.")
         # the whole upper string can be exchanged for os.execl(sys.executable, sys.executable, *sys.argv),
-        #  so the program'll restart and will be read again
+        #  so the program'll restart and will be read again. additional "import os" is needed to work.
 
     # Chosen .txt file is opened as a list
     with open(filename, encoding='utf-8') as file:
