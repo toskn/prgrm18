@@ -25,6 +25,8 @@ def open_file_to_list(players_choice):
     # Players' input is invalid
     elif players_choice != '1' and players_choice != '2' and players_choice != '3':
         sys.exit("Такая категория отсутствует. Перезапустите игру.")
+        # the whole upper string can be exchanged for os.execl(sys.executable, sys.executable, *sys.argv),
+        #  so the program'll restart and will be read again
 
     # Chosen .txt file is opened as a list
     with open(filename, encoding='utf-8') as file:
@@ -85,7 +87,7 @@ def game(word_to_guess):
             list_of_tries.append(players_guess)
             list_of_tries = list(set(list_of_tries))
             print("Список уже введенных букв: " + str(list_of_tries))
-            
+
             # Player did guess a letter; a letter of the hidden word is revealed.
             # To reveal a letter a string is created from the list.
             for i in range(len(list_of_letters)):
