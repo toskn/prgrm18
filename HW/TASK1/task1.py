@@ -42,11 +42,21 @@ def random_word(file):
 
 # This def is the gameplay
 def game(word_to_guess):
-    attempts = 10
+    attempts = 9
     list_of_tries = ['ё']
     i = 0
     ii = 0
     iii = 0
+
+    # that's a picture of a hangman
+    human = [' _________\n|         |\n|         0\n|        /|\\\n|        / \\\n|        ___\n|       /   \\',
+             ' _________\n|         |\n|         0\n|        /|\\\n|        / \\\n|        ___\n|',
+             ' _________\n|         |\n|         0\n|        /|\\\n|        / \\\n|\n|',
+             ' _________\n|         |\n|         0\n|        /|\\\n|        / \\\n|',
+             ' _________\n|         |\n|         0\n|        /|\\\n|        / \\',
+             ' _________\n|         |\n|         0\n|        /|\\',
+             ' _________\n|         |\n|         0', ' _________\n|         |', ' _________', '']
+
     list_of_letters = list(word_to_guess)
     underline = ''
 
@@ -57,7 +67,7 @@ def game(word_to_guess):
     underline = underline[:-1]
     list_underline = underline.split(' ')
     print(underline)
-    print('У вас есть 10 попыток, чтобы угадать слово из ' + str(len(word_to_guess)) + ' букв')
+    print('У вас есть ' + str(attempts) + ' попыток, чтобы угадать слово из ' + str(len(word_to_guess)) + ' букв')
 
     # Preparation finished, the game starts here.
     while attempts > 0 and underline.split(' ') != list_of_letters:
@@ -72,12 +82,10 @@ def game(word_to_guess):
             for i in range(len(list_of_tries)):
                 if players_guess == list_of_tries[i]:
                     print('Вы уже вводили эту букву')
-                    attempts += 1
-                    if attempts > 10:
-                        attempts = 10
             list_of_tries.append(players_guess)
             list_of_tries = list(set(list_of_tries))
             print("Список уже введенных букв: " + str(list_of_tries))
+            
             # Player did guess a letter; a letter of the hidden word is revealed.
             # To reveal a letter a string is created from the list.
             for i in range(len(list_of_letters)):
@@ -100,8 +108,9 @@ def game(word_to_guess):
                     print('Осталась 1 попытка')
                 elif 1 < attempts < 5:
                     print('Осталось ' + str(attempts) + ' попытки')
-                elif 5 <= attempts <= 10:
+                elif 5 <= attempts <= 9:
                     print('Осталось ' + str(attempts) + ' попыток')
+            print(human[attempts])
             if underline.split(' ') == list_of_letters:
                 print('Победа! Вы разгадали слово!')
             print(underline)
