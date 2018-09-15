@@ -5,15 +5,16 @@ import re
 import sys
 
 
-# This  def allows player to choose the category
+# This def allows player to choose the category he wants to play
 def choose_category():
     players_choice = input('Введите номер категории, которую хотите играть: \n 1) Столярные инструменты \n '
                            '2) Слесарные инструменты \n 3) Футбольные клубы, образованные в 1933 году')
     return players_choice
 
 
-# This def opens the chosen file to a list
+# This def opens the chosen file as a list
 def open_file_to_list(players_choice):
+
     # Players' input is valid
     if players_choice == '1':
         filename = 'stolyarnie_instrumenti.txt'
@@ -26,7 +27,7 @@ def open_file_to_list(players_choice):
     elif players_choice != '1' and players_choice != '2' and players_choice != '3':
         sys.exit("Такая категория отсутствует. Перезапустите игру.")
         # the whole upper string can be exchanged for os.execl(sys.executable, sys.executable, *sys.argv),
-        #  so the program'll restart and will be read again. additional "import os" is needed to work.
+        # so the program'll restart and will be read again. additional "import os" is needed to work.
 
     # Chosen .txt file is opened as a list
     with open(filename, encoding='utf-8') as file:
@@ -80,7 +81,7 @@ def game(word_to_guess):
         # 2) if there is only one letter
         # 3) if letter is cyrillic
         if players_guess.isalpha() and len(players_guess) == 1 and bool(re.search('[а-яА-Я]', players_guess)):
-            # this tells player if he already tried this letter
+            # this tells player if he has already tried this letter
             for i in range(len(list_of_tries)):
                 if players_guess == list_of_tries[i]:
                     print('Вы уже вводили эту букву')
@@ -113,9 +114,13 @@ def game(word_to_guess):
                 elif 5 <= attempts <= 9:
                     print('Осталось ' + str(attempts) + ' попыток')
             print(human[attempts])
+
+            # Player guessed all the letters
             if underline.split(' ') == list_of_letters:
                 print('Победа! Вы разгадали слово!')
             print(underline)
+
+        # Players' input was invalid
         else:
             print("Ошибка ввода. Пожалуйста, введите одну букву русского алфавита. 'Ё' не играет.")
 
