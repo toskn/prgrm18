@@ -28,7 +28,19 @@ def temp_and_cloud(html):
         clean_temp = regword.sub('', clean_temp)
         clean_temp = regdate.sub('', clean_temp)
         final_temp.append(clean_temp)
-        print('Температура днём: ' + str(final_temp[0][0:4]) + '\n' + 'Температура ночью: ' + str(final_temp[0][4:]))
+
+    # \u00b0 = ° in unicode. All this trouble with the degree sign is that it's the same as russian "о" for python.
+    # the part of code here finds out where to slice the info about the temperature so it fits nicely for day and night
+    # parts.
+    degree_sign1 = '\u00b0\+'
+    degree1 = re.search(degree_sign1, str(final_temp))
+    degree1 = str(degree1)
+    # Now we need to find where re.search span ends and this number is the place to slice.
+    degree1 = re.findall(' \d+', degree1)
+    slice_temp = int(degree1[0][1:]) - 1
+    # The first two and the last two elements are brackets of the list, which was converted to string.
+    print('Температура днём: ' + str(final_temp)[2:slice_temp] + '\n'
+          + 'Температура ночью: ' + str(final_temp)[slice_temp:-2])
 
     # The part about the clouds
     final_cloud = []
@@ -36,7 +48,14 @@ def temp_and_cloud(html):
     for i in cloud:
         clean_cloud = regtag.sub('', i)
         final_cloud.append(clean_cloud)
-        print('Облачность: ' + str(final_cloud[0][32:]))
+    degree_sign2 = 'ночью.*?\u00b0'
+    degree2 = re.search(degree_sign2, str(final_cloud))
+    degree2 = str(degree2)
+    # Now we need to find where re.search span ends and this number is the place to slice.
+    degree2 = re.findall(' \d+', degree2)
+    slice_cloud = int(degree2[0][1:])
+    # Here the second degree symbol is found and the rest of the text after it is shown
+    print('Облачность: ' + str(final_cloud)[slice_cloud:-2])
 
 
 def sunrise_sunset(html):
