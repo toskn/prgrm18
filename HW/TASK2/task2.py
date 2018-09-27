@@ -4,6 +4,17 @@ import json
 import re
 
 
+def choose_func():
+    choice = input('Введите номер той функции из списка, которую хотите исползовать:\n'
+                   '1. Узнать названия и описания репозиториев пользователя\n'
+                   '2. Узнать список языков пользователя и репозитории, в которых они используются\n')
+    if choice == 1:
+        repo_info(get_repos())
+    elif choice == 2:
+        get_languages(repo_info(get_repos()))
+    return 0
+
+
 # Here the program gets the repository of the chosen user
 def get_repos():
     user = input('Введите имя пользователя')
@@ -48,7 +59,24 @@ def repo_info(data):
         else:
             print(str(repo_name[i]) + ": " + str(repo_descr[i]) + ".")
         i += 1
-    return 0
+    return repo_name
 
 
-repo_info(get_repos())
+def get_languages(repo_name):
+    user = input('Введите имя пользователя')
+    token = ''  # insert your token
+    headers = {'apikey': 'token %s' % token}
+    i = 0
+    data_languages = []
+    while i < len(repo_name):
+        url = 'https://api.github.com/repos/%s/' + repo_name[i] + '/languages' % user
+        try:
+            request = urllib.request.Request(url, headers=headers)
+            response = urllib.request.urlopen(request)
+            text = response.read().decode('utf-8')
+            data = json.loads(text)
+            data_languages.append(data)
+            print(data_languages)
+            return data_languages
+        except urllib.error.URLError as e:
+            print('A problem occurred: ' + str(e.reason))
