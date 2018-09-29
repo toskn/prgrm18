@@ -4,6 +4,7 @@ import json
 import re
 import sys
 
+
 user = input('Введите имя пользователя')
 token = 'ccb3a4b775d7e1a38f77fc97ac5496b9b2e16c86'  # insert your token
 headers = {'apikey': 'token %s' % token}
@@ -104,10 +105,10 @@ def repo_info1(data):
     while i < len(repo_name):
         repo_name[i] = repo_name[i][9:-15]
         i += 1
-    return repo_name
+    return repo_name, data
 
 
-def get_languages(repo_name):
+def get_languages(repo_name, data):
     i = 0
     data_languages = []
     while i < len(repo_name):
@@ -119,12 +120,15 @@ def get_languages(repo_name):
             data = json.loads(text)
             data_languages.append(data)
             i += 1
+            print(data_languages)
+            print(type(data_languages))
+            print(type(data_languages[0]))
         except urllib.error.URLError as e:
             print('A problem occurred: ' + str(e.reason))
-    return data_languages
+    return data_languages, data
 
 
-def languages_sort(data_languages):
+def languages_sort(data_languages, data):
     i = 0
     lang_clear = []
     while i < len(data_languages):
@@ -139,10 +143,14 @@ def languages_sort(data_languages):
             str_lang = str_lang + str(lang_clear[i]) + ', '
         else:
             str_lang = str_lang + str(lang_clear[i]) + '.'
-        for key in data_languages:
-            if lang_clear[i] == data_languages[key]:
-                print
+        for key in data:
+            if key in data == 'language':
+                if lang_clear[i] == dict.get(key, ''):
+                    print('Язык' + str(lang_clear[i]) + 'используется в репозитории' + str(data['name']))
+
+        i += 1
     print('Пользователь ' + str(user) + ' пишет на ' + str_lang)
+
     return 0
 
 
