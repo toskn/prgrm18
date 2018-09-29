@@ -2,10 +2,13 @@ import urllib.request
 import urllib.error
 import json
 import re
+import sys
 
 user = input('Введите имя пользователя')
 token = 'ccb3a4b775d7e1a38f77fc97ac5496b9b2e16c86'  # insert your token
 headers = {'apikey': 'token %s' % token}
+
+
 def choose_func():
 
     choice = int(input('Введите номер той функции из списка, которую хотите исползовать:\n'
@@ -14,7 +17,14 @@ def choose_func():
     if choice == 1:
         repo_info(get_repos())
     elif choice == 2:
-        get_languages(repo_info1(get_repos1()))
+        languages_sort(get_languages(repo_info1(get_repos1())))
+    # elif choice == 3:
+
+    # elif choice == 4:
+
+    elif choice != 1 and choice != 2 and choice != 3 and choice != 4:
+        sys.exit("Такая категория отсутствует. Перезапустите программу.")
+
     return 0
 
 
@@ -94,28 +104,46 @@ def repo_info1(data):
     while i < len(repo_name):
         repo_name[i] = repo_name[i][9:-15]
         i += 1
-    i = 0
     return repo_name
 
 
 def get_languages(repo_name):
     i = 0
     data_languages = []
-    print(repo_name)
     while i < len(repo_name):
         url = 'https://api.github.com/repos/' + str(user) + '/' + str(repo_name[i]) + '/languages'
-        print(url)
         try:
             request = urllib.request.Request(url, headers=headers)
             response = urllib.request.urlopen(request)
             text = response.read().decode('utf-8')
             data = json.loads(text)
             data_languages.append(data)
-            print(data_languages)
             i += 1
-            return data_languages
         except urllib.error.URLError as e:
             print('A problem occurred: ' + str(e.reason))
+    return data_languages
+
+
+def languages_sort(data_languages):
+    i = 0
+    lang_clear = []
+    while i < len(data_languages):
+        for key in data_languages[i]:
+            lang_clear.append(key)
+            lang_clear = list(set(lang_clear))
+        i += 1
+    i = 0
+    str_lang = ''
+    while i < len(lang_clear):
+        if i + 1 != len(lang_clear):
+            str_lang = str_lang + str(lang_clear[i]) + ', '
+        else:
+            str_lang = str_lang + str(lang_clear[i]) + '.'
+        for key in data_languages:
+            if lang_clear[i] == data_languages[key]:
+                print
+    print('Пользователь ' + str(user) + ' пишет на ' + str_lang)
+    return 0
 
 
 choose_func()

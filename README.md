@@ -19,7 +19,7 @@
 </tr>
 <tr>
 <td><strong>2</strong></td>
-<td>Краулер для газеты "Светлый путь"</td>
+<td>GitHub Users</td>
 <td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK2/task2.py"><em>Код</em></a></td>
 </tr>
 <tr>
