@@ -18,7 +18,8 @@ def choose_func():
     if choice == 1:
         repo_info(get_repos())
     elif choice == 2:
-        languages_sort(get_languages(repo_info1(get_repos1())))
+        repo_name, data = repo_info1(get_repos1())
+        languages_sort(get_languages(repo_name, data), data)
     # elif choice == 3:
 
     # elif choice == 4:
@@ -106,6 +107,12 @@ def repo_info1(data):
         repo_name[i] = repo_name[i][9:-15]
         i += 1
     return repo_name, data
+    # everything that repo_info does can be done in another way basing on JSON dicts.
+    # languages = []
+    # for i in data:
+    # print(i['name'], i['description'])
+    # languages.append(i['language'])
+
 
 
 def get_languages(repo_name, data):
@@ -120,12 +127,9 @@ def get_languages(repo_name, data):
             data = json.loads(text)
             data_languages.append(data)
             i += 1
-            print(data_languages)
-            print(type(data_languages))
-            print(type(data_languages[0]))
         except urllib.error.URLError as e:
             print('A problem occurred: ' + str(e.reason))
-    return data_languages, data
+    return data_languages
 
 
 def languages_sort(data_languages, data):
@@ -147,9 +151,8 @@ def languages_sort(data_languages, data):
             if key in data == 'language':
                 if lang_clear[i] == dict.get(key, ''):
                     print('Язык' + str(lang_clear[i]) + 'используется в репозитории' + str(data['name']))
-
         i += 1
-    print('Пользователь ' + str(user) + ' пишет на ' + str_lang)
+    print('\nПользователь ' + str(user) + ' пишет на ' + str_lang)
 
     return 0
 
