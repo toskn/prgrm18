@@ -20,12 +20,12 @@
 <tr>
 <td><strong>2</strong></td>
 <td>GitHub Users</td>
-<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK2/task2.py"><em>Код</em></a></td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK2/task2_Egor_Yatsishin.py"><em>Код</em></a></td>
 </tr>
 <tr>
 <td><strong>3</strong></td>
-<td>Типологическая анкета об употреблении феминитивов</td>
-<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK3/task3.py"><em>Код</em></a></td>
+<td>Краулер для газет</td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK3/task3_Egor_Yatsishin.py"><em>Код</em></a></td>
 </tr>
 </tbody>
 </table>
