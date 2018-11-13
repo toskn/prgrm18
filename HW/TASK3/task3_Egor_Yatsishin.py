@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import time
 
-# программа сейчас не работает, потому что мне не хватило времени ее доделать. В целом, если запустить
+# Программа сейчас не работает, потому что мне не хватило времени ее доделать. В целом, если запустить
 # get_news(get_links(page_data(navigation(year, month, page, s))), s)
 # то все выкачивается с заданой параметрами year, month, page страницы.
 # find_last_page, page_scroller и extended_navigation должны были расширить функицонал
