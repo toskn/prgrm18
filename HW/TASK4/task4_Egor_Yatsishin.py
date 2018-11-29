@@ -47,5 +47,28 @@ def json_maker():
     return render_template("json.html", json=dict_csv)
 
 
+@app.route('/search')
+def do_search():
+    return render_template("search.html")
+
+
+@app.route('/result', methods=['POST'])
+def show_result():
+    dict_csv = {}
+    if request.method == 'POST':
+        ask = request.form['ask_search']
+        what = request.form['what_search']
+        fieldnames = ['ask', 'what', 'how', 'name', 'surname']
+        with open(filename, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile, fieldnames=fieldnames)
+            for row in reader:
+                if row['ask'] == ask:
+                    if (row['what'] == what or row['how'] == what or
+                            row['name'] == what or row['surname'] == what):
+                        name = row['name'] + ' ' + row['surname']
+                        dict_csv[name] = json.loads(json.dumps(row))
+        return render_template("result.html", result=dict_csv)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
