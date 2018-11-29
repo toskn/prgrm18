@@ -27,5 +27,10 @@
 <td>Краулер для газет</td>
 <td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK3/task3_Egor_Yatsishin.py"><em>Код</em></a></td>
 </tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Фласк страница</td>
+<td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK3/task4_Egor_Yatsishin.py"><em>Код</em></a></td>
+</tr>
 </tbody>
 </table>
