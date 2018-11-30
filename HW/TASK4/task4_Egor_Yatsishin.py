@@ -30,9 +30,21 @@ def save_to_csv():
 
 @app.route('/stats')
 def show_stats():
-    with open(filename, 'r', encoding='utf-8') as content:
-        content = csv.reader(content)
-        return render_template("stats.html", content=content)
+    yes_counter = 0
+    no_counter = 0
+    fieldnames = ['ask', 'what', 'how', 'name', 'surname']
+    with open(filename, 'r', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile, fieldnames=fieldnames)
+        for row in reader:
+            if 'yes' in row['ask']:
+                yes_counter += 1
+            else:
+                no_counter += 1
+        with open(filename, 'r', encoding='utf-8') as content:
+            content = csv.reader(content)
+            return render_template("stats.html", content=content,
+                                   yes_counter=yes_counter,
+                                   no_counter=no_counter)
 
 
 @app.route('/json')

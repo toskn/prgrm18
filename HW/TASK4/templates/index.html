@@ -4,15 +4,45 @@
     <meta charset="utf-8">
     <title>Бейрутская анкета</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel = "stylesheet" href = "static/styles.css?v=301118">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="http://lbn.rs.gov.ru/ru/about">Отбор в Бейрут</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Анкета<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stats">Статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/json">JSON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">Поиск</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<br>
+<br>
+<br>
 <form action="http://127.0.0.1:5000/thanks" method = 'POST'>
-    <fieldset>
+    <fieldset style="padding: 10px">
         <legend><b>Ответьте на вопросы для отбора в бейрутскую экспедицию</b></legend>
     <p>Пожалуйста, заполняйте таблицу на английском языке для удобства последующих опреаций с ней</p>
     Вы курите?<br>
-    <input type="radio" name="ask" value="yes" checked>Да<br>
-    <input type="radio" name="ask" value="no">Нет<br>
+    <input type="radio" name="ask" value="yes" checked> Да<br>
+    <input type="radio" name="ask" value="no"> Нет<br>
     Что вы обычно курите?<br>
         Например: Bali Shag tobacco, deep sea seaweeds.<br>
     <input type="text" name="what" required pattern='[a-zA-Z]+'><br>
@@ -25,13 +55,22 @@
         Какова ваша фамилия?<br>
         Например: Starchenko.<br>
     <input type="text" name="surname" required pattern='[a-zA-Z]+'><br>
+        <br>
     <p><input type="submit" value="Отправить"></p>
 
     </fieldset>
 </form>
-<p><a href='/stats'>Статистика опроса</a></p>
-<p><a href='/json'>Json со всеми введенными на сайте данными
-</a></p>
-<p><a href='/search'>Поиск по результатам</a></p>
+
+<footer class="footer">
+    <div class="container">
+            <span class="text-muted">© 2018 Copyright pending:
+                <a href="/"> Бейрутская экспедиция</a>
+            </span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
