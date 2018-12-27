@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{search}}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="static/styles.css?v271218">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="myHeader">
+        <a class="navbar-left" href="/"><img src="{{ url_for('static', filename='theta_small_white_50.png') }}"></a>
+        <a class="navbar-brand" href="/">Theta.Search</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+</header>
+
+<div class="search-result">
+    {%for post in list_of_dicts%}
+    <div class="card">
+    <div class="card-header">
+        <p class="panel-title"><b>{{post.name}}</b></p><br>
+    </div>
+
+        <div class="card-block">
+        <p class="font-weight-normal">…{{post.text}}…</p>
+        </div>
+
+    <div class="card-footer">
+        <a href="{{post.link}}"><p class="font-weight-light, btn btn-primary">Читать в источнике</p></a>
+    </div>
+    </div>
+    <br>
+        {%endfor%}
+    </div>
+
+<footer class="footer">
+    <div class="container">
+            <span class="text-muted">© 2018 Copyright pending:
+                <a href="/"> Theta Product Group</a>
+            </span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='headerjs.js') }}"></script>
+</body>
+</html>
