@@ -1,0 +1,12 @@
+Flask==1.0.2
+flask-paginate==0.5.1
+gensim==3.7.3
+Jinja2==2.10
+matplotlib==3.0.2
+numpy==1.15.4
+pandas==0.24.2
+pandocfilters==1.4.2
+pyTelegramBotAPI==3.2.1
+requests==2.18.4
+PySocks==1.7.0
+Werkzeug==0.14.1
