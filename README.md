@@ -32,5 +32,10 @@
 <td>Сайт-анкета</td>
 <td><a href="https://github.com/toskn/prgrm18/blob/master/HW/TASK4/task4_Egor_Yatsishin.py"><em>Код</em></a></td>
 </tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Финальный проект - бот @GreenOctoberBot</td>
+<td><a href="https://github.com/toskn/prgrm18/tree/master/HW/FINAL_PROJECT"><em>Папка со всем</em></a></td>
+</tr>
 </tbody>
 </table>
