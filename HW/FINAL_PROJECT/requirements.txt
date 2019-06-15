@@ -1,0 +1,7 @@
+config==0.4.2
+markovify==0.7.1
+num2words==0.5.10
+PySocks==1.7.0
+pyTelegramBotAPI==3.2.1
+Flask==1.0.2
+requests==2.21.0
