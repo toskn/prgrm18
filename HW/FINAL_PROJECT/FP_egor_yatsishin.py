@@ -6,10 +6,7 @@ import config
 import flask
 import os
 bot = telebot.TeleBot(config.token)
-# telebot.apihelper.proxy = {'https': 'socks5h://'
-#  'yatsishin_ufxy9b'
-# ':dguc7azjbe'
-# '@socks-us.windscribe.com:1080'}
+
 telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
 
 
